@@ -1,0 +1,24 @@
+package com.itesm.ecommerce.infrastructure.persistence.mapper;
+
+import com.itesm.ecommerce.domain.model.Product;
+import com.itesm.ecommerce.infrastructure.persistence.entity.ProductEntity;
+
+public class ProductMapper {
+
+    public static ProductEntity toEntity(Product product) {
+        ProductEntity productEntity = new ProductEntity();
+        productEntity.setName(product.getName());
+        productEntity.setPrice(product.getPrice());
+        productEntity.setDescription(product.getDescription());
+        return productEntity;
+    }
+
+    public static Product toDomain(ProductEntity productEntity) {
+        Product product = new Product();
+        product.setName(productEntity.getName());
+        product.setPrice(productEntity.getPrice());
+        product.setDescription(productEntity.getDescription());
+        return product;
+    }
+
+}

@@ -7,22 +7,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "categories")
 @Getter
 @Setter
-@Table(name = "products")
-public class ProductEntity extends PanacheEntityBase {
+@NoArgsConstructor
+@AllArgsConstructor
+public class CategoryEntity extends PanacheEntityBase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "name", length = 45)
     private String name;
-    private String description;
-    private float price;
 
-    @ManyToOne
-    @JoinColumn(name = "categories_id")
-    private CategoryEntity category;
-
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<ProductEntity> products;
+    
 }

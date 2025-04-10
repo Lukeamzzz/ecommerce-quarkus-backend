@@ -18,6 +18,18 @@ public class ProductMapper {
         product.setName(productEntity.getName());
         product.setPrice(productEntity.getPrice());
         product.setDescription(productEntity.getDescription());
+        if(productEntity.getCategory() != null) {
+            product.setCategory(CategoryMapper.toDomain(productEntity.getCategory()));
+        }
+        return product;
+    }
+
+    public static Product toDomainIgnoringCategory(ProductEntity productEntity) {
+        Product product = new Product();
+        product.setName(productEntity.getName());
+        product.setPrice(productEntity.getPrice());
+        product.setDescription(productEntity.getDescription());
+
         return product;
     }
 

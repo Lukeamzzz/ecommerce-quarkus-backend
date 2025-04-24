@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
+    private int id;
     private String name;
     private String description;
     private float price;

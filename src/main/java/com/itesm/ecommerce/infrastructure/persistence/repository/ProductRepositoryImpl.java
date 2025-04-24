@@ -42,4 +42,8 @@ public class ProductRepositoryImpl implements ProductRepository, PanacheReposito
         }
         return productsList;
     }
+
+    public ProductEntity findProductById(int id) {
+        return findById(id);
+    }
 }

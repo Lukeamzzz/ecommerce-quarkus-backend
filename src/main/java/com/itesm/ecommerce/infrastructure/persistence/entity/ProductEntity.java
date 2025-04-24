@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,5 +26,8 @@ public class ProductEntity extends PanacheEntityBase {
     @ManyToOne
     @JoinColumn(name = "categories_id")
     private CategoryEntity category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ShoppingCartHasProductsEntity> shoppingCartHasProductsEntity;
 
 }

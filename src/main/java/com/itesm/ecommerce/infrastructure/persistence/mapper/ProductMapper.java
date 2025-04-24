@@ -15,6 +15,7 @@ public class ProductMapper {
 
     public static Product toDomain(ProductEntity productEntity) {
         Product product = new Product();
+        product.setId(productEntity.getId());
         product.setName(productEntity.getName());
         product.setPrice(productEntity.getPrice());
         product.setDescription(productEntity.getDescription());
@@ -27,6 +28,7 @@ public class ProductMapper {
     public static Product toDomainIgnoringCategory(ProductEntity productEntity) {
         Product product = new Product();
         product.setName(productEntity.getName());
+        product.setId(productEntity.getId());
         product.setPrice(productEntity.getPrice());
         product.setDescription(productEntity.getDescription());
 

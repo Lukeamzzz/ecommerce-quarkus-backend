@@ -24,7 +24,7 @@ public class ProductEntity extends PanacheEntityBase {
     private float price;
 
     @ManyToOne
-    @JoinColumn(name = "categories_id")
+    @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)

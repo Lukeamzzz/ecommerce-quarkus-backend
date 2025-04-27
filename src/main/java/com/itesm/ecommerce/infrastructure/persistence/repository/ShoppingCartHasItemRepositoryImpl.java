@@ -32,16 +32,20 @@ public class ShoppingCartHasItemRepositoryImpl implements ShoppingCartHasItemRep
 
     @Override
     public void removeItemFromCart(int shoppingCartId, int productId) {
-        //TODO
+        // ?1 and ?2 are placeholders for the sequentially numbered parameters passed to the method
+        // ?1 will always be the first parameter, ?2 will always be the second parameter, and so on
+        delete("shoppingCart.id = ?1 and product.id = ?2", shoppingCartId, productId);
     }
 
     @Override
     public void updateItemQuantity(int shoppingCartId, int productId, int quantity) {
-        //TODO
+        // Update the quantity of the item in the shopping cart where the parameters match
+        update("quantity = ?3 where shoppingCart.id = ?1 and product.id = ?2", shoppingCartId, productId, quantity);
     }
 
     @Override
     public void clearCart(int shoppingCartId) {
-        //TODO
+        // Remove all items from the shopping cart where the parameter matches
+        delete("shoppingCart.id = ?1", shoppingCartId);
     }
 }

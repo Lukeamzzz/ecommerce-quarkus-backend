@@ -19,7 +19,6 @@ public class ShoppingCartRepositoryImpl implements ShoppingCartRepository, Panac
     @Inject
     UserRepositoryImpl userRepository;
 
-
     @Override
     public ShoppingCart findByUserId(int userId) {
         ShoppingCartEntity shoppingCartEntity = find("user.id", userId).firstResult();
@@ -42,12 +41,22 @@ public class ShoppingCartRepositoryImpl implements ShoppingCartRepository, Panac
     @Override
     public void createShoppingCart(int userId) {
         ShoppingCartEntity shoppingCartEntity = new ShoppingCartEntity();
-        UserEntity user=userRepository.findById(userId);
+        UserEntity user = userRepository.findById(userId);
         shoppingCartEntity.setUser(user);
+        shoppingCartEntity.setStatus("active");
+        shoppingCartEntity.setItems(new ArrayList<>()); // Initialize the items list
         persist(shoppingCartEntity);
     }
 
     public ShoppingCartEntity findByIdEntity(int id){
         return findById(id);
+    }
+
+    public void updateCartStatus(int cartId, String status) {
+        ShoppingCartEntity shoppingCartEntity = findByIdEntity(cartId);
+        if (shoppingCartEntity != null) {
+            shoppingCartEntity.setStatus(status);
+            persist(shoppingCartEntity);
+        }
     }
 }

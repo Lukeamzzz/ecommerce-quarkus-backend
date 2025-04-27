@@ -7,9 +7,9 @@ import jakarta.inject.Inject;
 
 @ApplicationScoped
 public class FindUserShoppingCartUseCase {
-
     @Inject
     CartService shoppingCartService;
+    
     public ShoppingCart execute(String firebaseId) {
         return shoppingCartService.getShoppingCart(firebaseId);
     }

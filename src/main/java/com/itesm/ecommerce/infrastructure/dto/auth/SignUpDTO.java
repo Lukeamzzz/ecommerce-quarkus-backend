@@ -1,4 +1,4 @@
-package com.itesm.ecommerce.domain.model;
+package com.itesm.ecommerce.infrastructure.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-    private Integer id;
-    private String firebaseId;
+public class SignUpDTO {
+    private String email;
+    private String password;
 }

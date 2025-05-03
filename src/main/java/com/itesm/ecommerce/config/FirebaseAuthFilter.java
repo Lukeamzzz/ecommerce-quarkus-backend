@@ -17,14 +17,22 @@ public class FirebaseAuthFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext){
-        String authHeader= requestContext.getHeaderString("Authorization");
-        if(authHeader==null || !authHeader.startsWith("Bearer ")){
+        // Get the complete path and check if it's the signup endpoint
+        String path = requestContext.getUriInfo().getPath();
+        if (path.endsWith("/auth/signup")) {
+            return;
+        }
+
+        String authHeader = requestContext.getHeaderString("Authorization");
+
+        if(authHeader == null || !authHeader.startsWith("Bearer ")){
             requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
                     .entity("Authorization header must be provided")
                     .build());
             return;
         }
-        String token= authHeader.substring("Bearer".length()).trim();
+
+        String token = authHeader.substring("Bearer".length()).trim();
         try{
             FirebaseToken decodedToken= FirebaseAuth.getInstance().verifyIdToken(token);
             System.out.println(decodedToken.getUid());

@@ -11,12 +11,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private float price;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Category category;
-
-
 }
